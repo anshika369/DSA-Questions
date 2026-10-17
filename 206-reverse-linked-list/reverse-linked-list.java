@@ -1,43 +1,28 @@
-/*Definition of singly linked list:
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {
-        val = 0;
-        next = null;
-    }
-
-    ListNode(int data1) {
-        val = data1;
-        next = null;
-    }
-
-    ListNode(int data1, ListNode next1) {
-        val = data1;
-        next = next1;
-    }
-}
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
  */
-import java.util.*;
 class Solution {
     public ListNode reverseList(ListNode head) {
-        if(head==null || head.next==null) return head;
-        Stack<ListNode> st =new Stack<>();
-        ListNode temp=head;
-        while(temp!=null){
-            st.push(temp);
-            temp=temp.next;
-        }
 
-        ListNode ptr=st.pop();
-        head=ptr;
-        while(!st.isEmpty()){
-            ptr.next=st.pop();
-            ptr=ptr.next;
+       
+        ListNode prev=null;
+        ListNode curr=head;
+        while(curr!=null){
+            ListNode nextNode=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=nextNode;
+
+
         }
-        ptr.next=null;
+         head=prev;
         return head;
-        
     }
 }
